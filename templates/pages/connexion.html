@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <style>
+       
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+       
+        body {
+            background: linear-gradient(135deg, #819dd5 0%, #2a5298 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Carte contenant le formulaire */
+        .login-container {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 24px;
+            color: #1e3c72;
+            font-size: 1.8rem;
+        }
+
+        
+        .login-container form p {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+
+        .login-container label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333333;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"],
+        .login-container input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            outline: none;
+        }
+
+        .login-container input:focus {
+            border-color: #2a5298;
+            box-shadow: 0 0 6px rgba(42, 82, 152, 0.4);
+        }
+
+       
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #2a5298;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #1e3c72;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Connexion</h2>
+        
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-submit">Se connecter</button>
+        </form>
+    </div>
+
+</body>
+</html>
