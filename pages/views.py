@@ -26,7 +26,7 @@ def connexion(request):
 
                 role = user.role
                 print(role)
-                if role == "admin":
+                if role == "admin": 
                     
                     return redirect('dashboardadmin')
                 

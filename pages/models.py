@@ -5,9 +5,9 @@ from django.contrib.auth.models import AbstractUser
 
 class Utilisateur(AbstractUser):
     ChoiceRole = (
-        ('ADMIN','administrateur'),
-        ('TEACHERS','enseignant' ),
-        ('STUDENTS','etudiant')
+        ('admin','administrateur'),
+        ('teachers','enseignant' ),
+        ('students','etudiant')
     )
     role = models.CharField(
         max_length= 25,
