@@ -11,11 +11,13 @@ class Utilisateur(AbstractUser):
     )
     role = models.CharField(
         max_length= 25,
-        choices=ChoiceRole
+        choices=ChoiceRole,
+        default='etudiant'
         
     )
-   
+    email = models.EmailField(unique=True)
+    REQUIRED_FIELDS = ['email', 'first_name', 'last_name', 'role']
     
     def __str__(self):
-        return f"{self.username}-{self.role}-{self.email}"
+        return f"{self.username}-{self.role}-{self.email} "
     

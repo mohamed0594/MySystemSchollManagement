@@ -4,69 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/dashboardadmin.css' %}">
-    <title>Dashboard Administrateur</title>
-
-
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="{% static 'css/dashboardadmin.css' %}?v=1.1">
+    {% comment %} ou que le cache du navigateur bloque la mise à jour. {% endcomment %}
 </head>
 <body>
-
-    <nav>
-
-        <h2>Polytechnic University of Man </h2>
-
+    <!--Menu de navigation  de adminstrateur django  -->
+    
+   <div class="container">
+    <div class="navigation">
         <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">Profil</a></li>
-            <li><a href="#">Déconnexion</a></li>
+            <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="logo-apple"></ion-icon></span>
+                    <span class="titre">The dashboard admin</span>
+                </a>
+            </li>
+
+             <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                    <span class="titre">Acces</span>
+                </a>
+            </li>
+             <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="add-outline"></ion-icon></span>
+                    <span class="titre">Ajouter</span>
+                </a>
+            </li>
+             <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="trash-outline"></ion-icon></span>
+                    <span class="titre">Supprimer</span>
+                </a>
+            </li>
+             <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="card-outline"></ion-icon></span>
+                    <span class="titre">Modifier</span>
+                </a>
+            </li>
+               <li>
+                <a href="#">
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                    <span class="titre">Deconnexion</span>
+                </a>
+            </li>
+
+
         </ul>
+   
 
-    </nav>
 
-    <h1 class="titre">
-        Tableau de bord Administrateur
-    </h1>
 
-    <div class="container">
-
-        <div class="card">
-            <h3>Utilisateurs</h3>
-            <p>Gérer les comptes utilisateurs.</p>
-            <a href="#">Ouvrir</a>
-        </div>
-
-        <div class="card">
-            <h3> Étudiants</h3>
-            <p>Ajouter, modifier ou supprimer des étudiants.</p>
-            <a href="#">Ouvrir</a>
-        </div>
-
-        <div class="card">
-            <h3> Enseignants</h3>
-            <p>Gestion des enseignants.</p>
-            <a href="#">Ouvrir</a>
-        </div>
-
-        <div class="card">
-            <h3> Matières</h3>
-            <p>Gestion des matières.</p>
-            <a href="#">Ouvrir</a>
-        </div>
-
-        <div class="card">
-            <h3>Notes</h3>
-            <p>Consulter les notes des étudiants.</p>
-            <a href="#">Ouvrir</a>
-        </div>
-
-        <div class="card">
-            <h3> Rapports</h3>
-            <p>Statistiques et rapports.</p>
-            <a href="#">Ouvrir</a>
-        </div>
 
     </div>
 
+
+   </div> 
+
+<script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
-

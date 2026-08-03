@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-import pages
+# import pages
 from .forms import Utilisateurforms
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
@@ -19,8 +19,8 @@ def connexion(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            # print("Username :", username)
-            # print("Password :", password)
+            print("Username :", username)
+            print("Password :", password)
             user = authenticate(request, username= username, password = password)
             print(user)
             if user is not None : 

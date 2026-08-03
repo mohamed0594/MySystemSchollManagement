@@ -23,14 +23,10 @@ class Classes (models.Model):
     class Meta:
         verbose_name = "Classe"
         verbose_name_plural = "Classes"
-class Classes (models.Model):
-    nom=models.CharField(max_length=50)
 
     def __str__(self):
         return self.nom
     
-
-
 class Etudiant (models.Model):
     nom=models.CharField(max_length=100)
     prenom =models.CharField(max_length=100)

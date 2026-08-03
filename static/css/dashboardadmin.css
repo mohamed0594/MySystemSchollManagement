@@ -1,97 +1,94 @@
+
  *{
             margin:0;
             padding:0;
             box-sizing:border-box;
             font-family:Arial, Helvetica, sans-serif;
-        }
+     
+}
 
-        body{
-            background:#f4f6f9;
-        }
+body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            
+}
+.container{
+            position: relative;
+            width: 100%;
+            
+}
+.navigation{
+            position: fixed;
+            width: 300px;
+            height: 100%;
+            background-color: blue;
+            transition: 0.5s;
+            overflow: hidden;
+            
+    }
+.navigation ul{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+       padding: 3px;
+       margin: 10px;
+
+}
+.navigation ul li {
+        position: relative;
+        width: 100%;
+        list-style: none;
+         /* margin: 10px; */
+         border-top-left-radius: 30px;
+         border-bottom-left-radius: 30px;
+      
+}
+.navigation ul li :hover{
+        background-color: white;
+      padding: 0Px 2px;
+      /* border-radius: 3px; */
+}
+.navigation ul li a{
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        display: flex;
+        color: rgb(214, 193, 193);
+}
+.navigation ul li:nth-child(1){
+   margin-bottom: 30px;
+
+}
+.navigation ul li :hover a .icon{
+        position: relative;
+        display: block;
+        min-width: 60px;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+}
+.navigation ul li a .icon{
+        position: relative;
+        display: block;
+        min-width: 60px;
+        height: 60px;
+        text-align: center;
+}
+.navigation ul li a .icon ion-icon{
+        font-size: 1.1rem;
+      
+}
+.navigation ul li a .titre {
+        position: relative;
+        display:  block;
+        /* height: 60px;
+        line-height: 60px;
+        padding: 0 10px;
+        text-align: start;
+        white-space: nowrap;
+        */
 
 
-        nav{
-            background:#2c3e50;
-            color:white;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:15px 40px;
-        }
-
-        nav h2{
-            font-size:25px;
-        }
-
-        nav ul{
-            display:flex;
-            list-style:none;
-        }
-
-        nav ul li{
-            margin-left:20px;
-        }
-
-        nav ul li a{
-            color:white;
-            text-decoration:none;
-            font-weight:bold;
-        }
-
-        nav ul li a:hover{
-            color:#1abc9c;
-        }
-
-
-        .titre{
-            text-align:center;
-            margin:40px 0;
-            color:#2c3e50;
-        }
-
-
-        .container{
-            width:90%;
-            margin:auto;
-
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:25px;
-        }
-
-        .card{
-            background:white;
-            border-radius:10px;
-            padding:30px;
-            text-align:center;
-            box-shadow:0 5px 10px rgba(0,0,0,.2);
-            transition:.3s;
-        }
-
-        .card:hover{
-            transform:translateY(-8px);
-        }
-
-        .card h3{
-            margin-bottom:15px;
-            color:#34495e;
-        }
-
-        .card p{
-            margin-bottom:20px;
-            color:#777;
-        }
-
-        .card a{
-            display:inline-block;
-            padding:10px 20px;
-            background:#3498db;
-            color:white;
-            text-decoration:none;
-            border-radius:5px;
-        }
-
-        .card a:hover{
-            background:#2980b9;
-        } 
+}
 
