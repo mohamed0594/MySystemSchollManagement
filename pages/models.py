@@ -6,8 +6,8 @@ from django.contrib.auth.models import AbstractUser
 class Utilisateur(AbstractUser):
     ChoiceRole = (
         ('admin','administrateur'),
-        ('teachers','enseignant' ),
-        ('students','etudiant')
+        ('enseignant','enseignant' ),
+        ('etudiant','etudiant')
     )
     role = models.CharField(
         max_length= 25,
@@ -17,5 +17,5 @@ class Utilisateur(AbstractUser):
    
     
     def __str__(self):
-        return self.username
+        return f"{self.username}-{self.role}-{self.email}"
     
