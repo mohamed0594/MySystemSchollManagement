@@ -7,5 +7,6 @@ urlpatterns = [
     path("dashboardadmin/", dashboardadmin,name="dashboardadmin"),
     path("dashboardteacher/", dashboardteacher,name="dashboardteacher"),
     path("dashboardstudent/", dashboardstudent , name = 'dashboardstudent'),
+    
 
 ]

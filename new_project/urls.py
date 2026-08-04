@@ -3,7 +3,8 @@ from .views import *
 
 urlpatterns = [
 
-    # path("", connexion,name='connexion'),
+    
+     path("inscrire_etudiant/", inscrire_etudiant , name = 'inscrire_etudiant'),
     
 
 ]

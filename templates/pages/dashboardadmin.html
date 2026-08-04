@@ -4,67 +4,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin</title>
-    <link rel="stylesheet" href="{% static 'css/dashboardadmin.css' %}?v=1.1">
-    {% comment %} ou que le cache du navigateur bloque la mise à jour. {% endcomment %}
+    <title>Gestion Scolaire - Admin</title>
+    <link rel="stylesheet" href="{% static 'css/dashboardadmin.css' %}?v=2.0">
 </head>
 <body>
-    <!--Menu de navigation  de adminstrateur django  -->
-    
-   <div class="container">
-    <div class="navigation">
-        <ul>
-            <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="logo-apple"></ion-icon></span>
-                    <span class="titre">The dashboard admin</span>
-                </a>
-            </li>
+    <div class="container">
+     
+        <aside class="navigation">
+            <ul>
+                <li class="brand">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="school-outline"></ion-icon></span>
+                        <span class="titre">Polytechnic University of Man</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="titre">Tableau de bord</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                        <span class="titre">Élèves</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="titre">Enseignants</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="book-outline"></ion-icon></span>
+                        <span class="titre">Classes & Cours</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="card-outline"></ion-icon></span>
+                        <span class="titre">Frais d'scolarité</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="titre">Paramètres</span>
+                    </a>
+                </li>
+                <li class="logout">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="titre">Déconnexion</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
 
-             <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                    <span class="titre">Acces</span>
-                </a>
-            </li>
-             <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="add-outline"></ion-icon></span>
-                    <span class="titre">Ajouter</span>
-                </a>
-            </li>
-             <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="trash-outline"></ion-icon></span>
-                    <span class="titre">Supprimer</span>
-                </a>
-            </li>
-             <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="card-outline"></ion-icon></span>
-                    <span class="titre">Modifier</span>
-                </a>
-            </li>
-               <li>
-                <a href="#">
-                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-                    <span class="titre">Deconnexion</span>
-                </a>
-            </li>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar -->
+            <header class="topbar">
+                <div>
+                    <h2>Administration Scolaire</h2>
+                    <p class="subtitle">Année Académique 2025-2026</p>
+                </div>
+                <div class="user-profile">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <span>Directeur / Admin</span>
+                </div>
+            </header>
 
+          
 
-        </ul>
-   
+            <!-- Table section for School Management -->
+            <section class="details">
+                <div class="recent-orders">
+                    <div class="card-header">
+                        <h3>Dernières inscriptions</h3>
+                        <a href="{% url 'inscrire_etudiant' %}" class="btn">+Inscrire un élève</a>
+                    </div>
 
+                    <table>
+                        <thead>
+                            <tr>
+                                <td class="lock">Nom</td>
+                                <td class="lock">Prenom </td>
+                                <td class="lock">age</td>
+                                <td class="lock">classe</td>
+                                <td class="lock">matricule </td>
+                                <td class="lock">id_user </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          {% for etudiant in etudiants %}  
+                            <tr>
+                            <td>{{ etudiant.nom }}</td>
+                            <td>{{ etudiant.prenom }}</td>
+                            <td>{{ etudiant.age }}</td>
+                            <td>{{ etudiant.classe }}</td>
+                            <td>{{ etudiant.matricule }}</td>
+                            <td>{{ etudiant.id_user }}</td>
+                            </tr>
 
-
-
+                             {% endfor %} 
+                        </tbody>
+                         
+                         
+                    </table>
+                </div>
+            </section>
+        </main>
     </div>
 
-
-   </div> 
-
-<script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+    <!-- Ionicons CDN -->
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

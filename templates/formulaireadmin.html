@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription d'un étudiant</title>
+    <link rel="stylesheet" href="{% static 'css/formulaireadmin.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="form-card">
+
+        <h2>Inscription d'un étudiant</h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Nom</label>
+                {{ form.nom }}
+            </div>
+
+            <div class="form-group">
+                <label>Prenom</label>
+                {{ form.prenom }}
+            </div>
+
+            <div class="form-group">
+                <label>Âge</label>
+                {{ form.age }}
+            </div>
+
+            <div class="form-group">
+                <label>Classe</label>
+                {{ form.classe }}
+            </div>
+
+            <div class="form-group">
+                <label>Matricule</label>
+                {{ form.matricule }}
+            </div>
+
+            <div class="form-group">
+                <label>Utilisateur</label>
+                {{ form.id_user }}
+            </div>
+
+            <div class="buttons">
+                <button type="submit" class="btn-save">
+                    Enregistrer
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
