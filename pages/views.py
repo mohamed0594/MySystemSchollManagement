@@ -53,15 +53,25 @@ def connexion(request):
 
 def dashboardadmin(request):
     etudiants = Etudiant.objects.all()
+    nombre_total_admin = Etudiant.objects.count()
     context = {
-        'etudiants':etudiants
+        'etudiants':etudiants,
+        'nombre_total_admin':nombre_total_admin
     }
+   
     
     return render(request,'pages/dashboardadmin.html', context)
 
 def dashboardteacher(request):
+    etudiants = Etudiant.objects.all()
+    nombre_total_admin = Etudiant.objects.count()
 
-    return render(request, 'dashboardteacher/dashboardteacher.html')
+    context = {
+        "etudiants": etudiants,
+        "nombre_total_admin": nombre_total_admin,
+    }
+
+    return render(request, "dashboardteacher/dashboardteacher.html", context)
 
 def dashboardstudent(request):
 

@@ -33,8 +33,8 @@ class Etudiant (models.Model):
     age=models.IntegerField(default=0)
     classe = models.ForeignKey(Classes, on_delete=models.SET_NULL,null=True)
     matricule =models.CharField(max_length=50, unique=True)
-    id_user =models.OneToOneField(Utilisateur, on_delete=models.CASCADE, related_name='etudiant' , null=True)
-
+    id_user = models.ForeignKey(Utilisateur,on_delete=models.CASCADE,related_name="etudiants",null=True,blank=True)
+    
     class Meta:
         verbose_name = "Etudiant"
         verbose_name_plural = "Etudiants"

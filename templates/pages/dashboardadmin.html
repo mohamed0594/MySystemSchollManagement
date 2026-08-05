@@ -27,11 +27,11 @@
                 <li>
                     <a href="#">
                         <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                        <span class="titre">Élèves</span>
+                        <span class="titre">Etudiants</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{% url 'dashboardteacher' %}">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="titre">Enseignants</span>
                     </a>
@@ -63,7 +63,7 @@
             </ul>
         </aside>
 
-        <!-- Main Content -->
+      
         <main class="main-content">
             <!-- Topbar -->
             <header class="topbar">
@@ -75,16 +75,29 @@
                     <ion-icon name="person-circle-outline"></ion-icon>
                     <span>Directeur / Admin</span>
                 </div>
+                
             </header>
+                <div class="cards">
+
+                    <div class="card">
+                        <div>
+                            <h3>{{ nombre_total_admin }}</h3>
+                            <p>Total Étudiants</p>
+                        </div>
+
+                        <ion-icon name="people-outline"></ion-icon>
+                    </div>
+
+                </div>
 
           
 
-            <!-- Table section for School Management -->
+           
             <section class="details">
                 <div class="recent-orders">
                     <div class="card-header">
                         <h3>Dernières inscriptions</h3>
-                        <a href="{% url 'inscrire_etudiant' %}" class="btn">+Inscrire un élève</a>
+                        <a href="{% url 'inscrire_etudiant' %}" class="btn">+Inscrire un Etudiant</a>
                     </div>
 
                     <table>
@@ -92,10 +105,12 @@
                             <tr>
                                 <td class="lock">Nom</td>
                                 <td class="lock">Prenom </td>
-                                <td class="lock">age</td>
-                                <td class="lock">classe</td>
-                                <td class="lock">matricule </td>
-                                <td class="lock">id_user </td>
+                                <td class="lock">Age</td>
+                                <td class="lock">Classe</td>
+                                <td class="lock">Matricule </td>
+                                <td class="lock">Id_user </td>
+                                <td class="lock">Modifier </td>
+                                <td class="lock">Supprimer </td>
                             </tr>
                         </thead>
                         <tbody>
@@ -107,6 +122,18 @@
                             <td>{{ etudiant.classe }}</td>
                             <td>{{ etudiant.matricule }}</td>
                             <td>{{ etudiant.id_user }}</td>
+
+                            <td>
+                                <a href="{% url 'modifier_etudiant' etudiant.id %}" class="Modifier"> 
+                                    <ion-icon name="create-outline"></ion-icon>
+                                </a>
+                            </td>
+
+                            <td>
+                                 <a href="{% url 'supprimer_etudiant' etudiant.id %}" class="Supprimer"> 
+                                    <ion-icon name="trash-outline"></ion-icon>
+                                </a>
+                            </td>
                             </tr>
 
                              {% endfor %} 
