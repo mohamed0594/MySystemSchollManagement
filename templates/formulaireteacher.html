@@ -4,17 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription d'un étudiant</title>
+    <title>Inscription d'un enseignant</title>
     <link rel="stylesheet" href="{% static 'css/formulaireadmin.css' %}">
 </head>
 <body>
 
 <div class="container">
-    
 
     <div class="form-card">
 
-        <h2>Inscription d'un étudiant</h2>
+        <h2>Inscription d'un enseignant</h2>
+
+      
+        {% if messages %}
+            <div class="messages-container">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="color: red; margin-bottom: 15px; font-weight: bold;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+     
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" style="color: red; margin-bottom: 15px;">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
 
         <form method="POST">
 
@@ -23,41 +40,59 @@
             <div class="form-group">
                 <label>Nom</label>
                 {{ form.nom }}
+                {% if form.nom.errors %}
+                    <span style="color: red; font-size: 0.85em;">{{ form.nom.errors.0 }}</span>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label>Prenom</label>
+                <label>Prénom</label>
                 {{ form.prenom }}
+                {% if form.prenom.errors %}
+                    <span style="color: red; font-size: 0.85em;">{{ form.prenom.errors.0 }}</span>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label>Age</label>
+                <label>Âge</label>
                 {{ form.age }}
+                {% if form.age.errors %}
+                    <span style="color: red; font-size: 0.85em;">{{ form.age.errors.0 }}</span>
+                {% endif %}
             </div>
 
             <div class="form-group">
                 <label>Classe</label>
                 {{ form.classe }}
+                {% if form.classe.errors %}
+                    <span style="color: red; font-size: 0.85em;">{{ form.classe.errors.0 }}</span>
+                {% endif %}
             </div>
 
             <div class="form-group">
-                <label>Matricule</label>
-                {{ form.matricule }}
+                <label>Matière</label>
+                {{ form.matiere }}
+                {% if form.matiere.errors %}
+                    <span style="color: red; font-size: 0.85em;">{{ form.matiere.errors.0 }}</span>
+                {% endif %}
             </div>
 
             <div class="form-group">
                 <label>Utilisateur</label>
                 {{ form.id_user }}
+                {% if form.id_user.errors %}
+                    <span style="color: red; font-size: 0.85em;">{{ form.id_user.errors.0 }}</span>
+                {% endif %}
             </div>
             
             <div class="buttons">
                 <button type="submit" class="btn-save">
                     Enregistrer
                 </button>
-                      <a href="{% url 'dashboardteacher' %}" class="Retour">
-                        <ion-icon name="arrow-back-outline" class="rr"></ion-icon>
-                        Retour
-                     </a>
+                <a href="{% url 'dashboardadmin' %}" class="Retour">
+                    <ion-icon name="arrow-back-outline" class="rr"></ion-icon>
+                    Retour
+                </a>
             </div>
 
         </form>

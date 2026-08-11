@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion Scolaire - Admin</title>
+    <title>Gestion Scolaire - Liste des Enseignants</title>
     <link rel="stylesheet" href="{% static 'css/dashboardadmin.css' %}?v=2.0">
 </head>
 <body>
     <div class="container">
-     
+        
         <aside class="navigation">
             <ul>
                 <li class="brand">
@@ -18,14 +18,13 @@
                         <span class="titre">Polytechnic University of Man</span>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="#">
+                <li>
+                    <a href="{% url 'dashboardadmin' %}">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="titre">Tableau de bord Administateur</span>
                     </a>
                 </li>
-             
-                <li>
+                <li class="active">
                     <a href="{% url 'liste_professeur' %}">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="titre">Enseignants</span>
@@ -43,27 +42,24 @@
                         <span class="titre">Frais d'scolarité</span>
                     </a>
                 </li>
-                   <li>
+                <li>
                     <a href="{% url 'inscrire_etudiant' %}">
                         <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                          <span class="titre">Ajouter Etudiant</span>
-                       
+                        <span class="titre">Ajouter Etudiant</span>
                     </a>
                 </li>
-                 <li>
-                        <a href="{% url 'liste_professeur' %}">
-                            <span class="icon"><ion-icon name="book-outline"></ion-icon></span>
-                            <span class="titre">Listes des matieres</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
-                            <span class="titre">Utilisateurs</span>
-                        </a>
-                    </li>
-                  
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="book-outline"></ion-icon></span>
+                        <span class="titre">listes des matieres</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+                        <span class="titre">Utilisateurs</span>
+                    </a>
+                </li>
                 <li>
                     <a href="#">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
@@ -76,13 +72,10 @@
                         <span class="titre">Déconnexion</span>
                     </a>
                 </li>
-               
             </ul>
         </aside>
 
-      
         <main class="main-content">
-            <!-- Topbar -->
             <header class="topbar">
                 <div>
                     <h2>Administration Scolaire Administateur</h2>
@@ -92,79 +85,54 @@
                     <ion-icon name="person-circle-outline"></ion-icon>
                     <span>Directeur / Admin</span>
                 </div>
-                
             </header>
-                <div class="cards">
 
-                    <div class="card">
-                        <div>
-                            <h3>{{ nombre_total_admin }}</h3>
-                            <p>Total Étudiants</p>
-                        </div>
-
-                        <ion-icon name="people-outline"></ion-icon>
-                    </div>
-
-                </div>
-
-          
-
-           
             <section class="details">
                 <div class="recent-orders">
-                    <form method="GET" class="search-form">
-                        <input type="text" name="recherche" placeholder="Rechercher un étudiant..."    value="{{ request.GET.recherche }}">
+                   <form method="GET" class="search-form">
+                        <input type="text" name="recherche" placeholder="Rechercher un enseignant..."    value="{{ request.GET.recherche }}">
                             
                          <button type="submit">Rechercher</button>
                     </form>
                     <div class="card-header">
-                        <h3>Dernières inscriptions</h3>
-                        <a href="{% url 'inscrire_etudiant' %}" class="btn">+Inscrire un Etudiant</a>
+                        <h3>Liste des Enseignants</h3>
+                        <a href="{% url 'ajouter_professeur' %}" class="btn">Ajouter un Enseignant</a>
                     </div>
 
                     <table>
                         <thead>
                             <tr>
                                 <td class="lock">Nom</td>
-                                <td class="lock">Prenom </td>
-                                <td class="lock">Age</td>
-                                <td class="lock">Classe</td>
-                                <td class="lock">Matricule </td>
-                                <td class="lock">Id_user </td>
-                                <td class="lock">Modifier </td>
-                                <td class="lock">Supprimer </td>
+                                <td class="lock">Prénom</td>
+                                <td class="lock">Matière</td>
+        
+                                <td class="lock">Modifier</td>
+                                <td class="lock">Supprimer</td>
                             </tr>
                         </thead>
                         <tbody>
-                          {% for etudiant in etudiants %}  
+                            {% for professeur in professeurs %}  
                             <tr>
-                            <td>{{ etudiant.nom }}</td>
-                            <td>{{ etudiant.prenom }}</td>
-                            <td>{{ etudiant.age }}</td>
-                            <td>{{ etudiant.classe }}</td>
-                            <td>{{ etudiant.matricule }}</td>
-                            <td>{{ etudiant.id_user }}</td>
-
-                            <td>
-                                <a href="{% url 'modifier_etudiant' etudiant.id %}" class="Modifier"> 
-                                    <ion-icon name="create-outline"></ion-icon>
-                                </a>
-                            </td>
-
-                            <td>
-                                 <a href="{% url 'supprimer_etudiant' etudiant.id %}" class="Supprimer"> 
-                                    <ion-icon name="trash-outline"></ion-icon>
-                                </a>
-                            </td>
-                              {% empty %}
+                                <td>{{ professeur.nom }}</td>
+                                <td>{{ professeur.prenom }}</td>
+                                <td>{{ professeur.matiere }}</td>
+                                <td>
+                                    <a href="{% url 'modifier_professeur' professeur.id %}" class="Modifier"> 
+                                        <ion-icon name="create-outline"></ion-icon>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'supprimer_professeur' professeur.id %}" class="Supprimer" onclick="return confirm('Voulez-vous vraiment supprimer cet enseignant ?');"> 
+                                        <ion-icon name="trash-outline"></ion-icon>
+                                    </a>
+                                </td>
                             </tr>
+                            {% empty %}
                             <tr>
-                                <td colspan="8">Aucun étudiant trouvé.</td>
-
-                             {% endfor %} 
+                                <td colspan="7">Aucun enseignant trouvé.</td>
+                            </tr>
+                            {% endfor %} 
                         </tbody>
-                         
-                         
                     </table>
                 </div>
             </section>

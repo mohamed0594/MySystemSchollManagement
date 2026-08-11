@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion Scolaire - Admin</title>
-    <link rel="stylesheet" href="{% static 'css/dashboardadmin.css' %}?v=2.0">
+    <title>Gestion Scolaire - Professeur</title>
+    <link rel="stylesheet" href="{% static 'css/dashboardteacher.css' %}?v=2.0">
 </head>
 <body>
     <div class="container">
@@ -21,28 +21,29 @@
                 <li class="active">
                     <a href="#">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="titre">Tableau de bord de l'Enseignants</span>
+                        <span class="titre">Tableau de bord professeur</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                        <span class="titre">Etudiants</span>
-                    </a>
-                </li>
+             
                 <li>
                     <a href="{% url 'dashboardteacher' %}">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="titre">Enseignants</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="book-outline"></ion-icon></span>
-                        <span class="titre">Classes & Cours</span>
+             
+                
+                   <li>
+                    <a href="{% url 'inscrire_etudiant' %}">
+                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                          <span class="titre">Ajouter Etudiant</span>
+                       
                     </a>
                 </li>
-               
+                
+
+                  
+                  
                 <li>
                     <a href="#">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
@@ -50,96 +51,17 @@
                     </a>
                 </li>
                 <li class="logout">
-                    <a href="#">
+                    <a href="{% url 'deconnexion' %}">
                         <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
                         <span class="titre">Déconnexion</span>
                     </a>
                 </li>
+               
             </ul>
         </aside>
 
       
-        <main class="main-content">
-           
-            <header class="topbar">
-                <div>
-                    <h2>Dashboard Enseignants</h2>
-                    <p class="subtitle">Année Académique 2025-2026</p>
-                </div>
-                <div class="user-profile">
-                    <ion-icon name="person-circle-outline"></ion-icon>
-                    <span>Enseignants</span>
-                </div>
-                
-            </header>
-                <div class="cards">
-
-                    <div class="card">
-                        <div>
-                            <h3>{{ nombre_total_admin }}</h3>
-                            <p> Nomnres Totals des  Étudiants</p>
-                        </div>
-
-                        <ion-icon name="people-outline"></ion-icon>
-                    </div>
-
-                </div>
-
-          
-
-           
-            <section class="details">
-                <div class="recent-orders">
-                    <div class="card-header">
-                        <h3>Dernières inscriptions sur la plateforme</h3>
-                        <a href="{% url 'inscrire_etudiant' %}" class="btn">+Inscrire un Etudiant</a>
-                    </div>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <td class="lock">Nom</td>
-                                <td class="lock">Prenom </td>
-                                <td class="lock">Age</td>
-                                <td class="lock">Classe</td>
-                                <td class="lock">Matricule </td>
-                                <td class="lock">Id_user </td>
-                                <td class="lock">Modifier </td>
-                                <td class="lock">Supprimer </td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                          {% for etudiant in etudiants %}  
-                            <tr>
-                            <td>{{ etudiant.nom }}</td>
-                            <td>{{ etudiant.prenom }}</td>
-                            <td>{{ etudiant.age }}</td>
-                            <td>{{ etudiant.classe }}</td>
-                            <td>{{ etudiant.matricule }}</td>
-                            <td>{{ etudiant.id_user }}</td>
-
-                            <td>
-                                <a href="{% url 'modifier_etudiant' etudiant.id %}" class="Modifier"> 
-                                    <ion-icon name="create-outline"></ion-icon>
-                                </a>
-                            </td>
-
-                            <td>
-                                 <a href="{% url 'supprimer_etudiant' etudiant.id %}" class="Supprimer"> 
-                                    <ion-icon name="trash-outline"></ion-icon>
-                                </a>
-                            </td>
-                            </tr>
-
-                             {% endfor %} 
-                        </tbody>
-                         
-                         
-                    </table>
-                </div>
-            </section>
-        </main>
-    </div>
+                              
 
     <!-- Ionicons CDN -->
     <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>

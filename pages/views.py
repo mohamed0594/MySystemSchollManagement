@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.template import context
-from django.views.generic import ListView
-# import pages
+
 from .forms import Utilisateurforms
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from new_project.models import Etudiant
 from new_project.forms import EtudiantForm
@@ -49,11 +48,18 @@ def connexion(request):
                 messages.error(request, "Nom utilisateur ou mot de passe incorrect")
              
     return render(request,'pages/connexion.html',{'form':form})
+#deconnexion
+def deconnexion(request):
+    logout(request)
+    return redirect('connexion')
 
 
 def dashboardadmin(request):
     etudiants = Etudiant.objects.all()
     nombre_total_admin = Etudiant.objects.count()
+    recherche = request.GET.get('recherche')
+    if recherche:
+        etudiants = etudiants.filter(nom__icontains=recherche)
     context = {
         'etudiants':etudiants,
         'nombre_total_admin':nombre_total_admin
