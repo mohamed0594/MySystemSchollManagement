@@ -86,18 +86,39 @@ def supprimer_professeur(request, id):
     messages.success(request, "Professeur supprimé avec succès.")
     return redirect("liste_professeur")
 
+# def liste_professeur(request):
+#     recherche = request.GET.get('recherche')
+
+#     if recherche:
+#         professeurs = Professeur.objects.filter(nom__icontains=recherche)
+#     else:
+#         professeurs = Professeur.objects.all()
+
+  
+#     context = {'professeurs': professeurs, 'recherche': recherche}
+
+#     return render(request, 'liste_professeur.html', context)
 def liste_professeur(request):
+
     recherche = request.GET.get('recherche')
 
     if recherche:
-        professeurs = Professeur.objects.filter(nom__icontains=recherche)
+        professeurs = Professeur.objects.filter(
+            nom__icontains=recherche
+        )
     else:
         professeurs = Professeur.objects.all()
 
-  
-    context = {'professeurs': professeurs, 'recherche': recherche}
+    context = {
+        'professeurs': professeurs,
+        'recherche': recherche
+    }
 
-    return render(request, 'liste_professeur.html', context)
+    return render(
+        request,
+        'liste_professeur.html',
+        context
+    )
 
 
 def detail_professeur(request, id):

@@ -27,46 +27,17 @@
                 <li class="active">
                     <a href="{% url 'liste_professeur' %}">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <span class="titre">Enseignants</span>
+                        <span class="titre">listes enseignants et matieres</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="book-outline"></ion-icon></span>
-                        <span class="titre">Classes & Cours</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="card-outline"></ion-icon></span>
-                        <span class="titre">Frais d'scolarité</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'inscrire_etudiant' %}">
-                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                        <span class="titre">Ajouter Etudiant</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="book-outline"></ion-icon></span>
-                        <span class="titre">listes des matieres</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
-                        <span class="titre">Utilisateurs</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="#">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="titre">Paramètres</span>
                     </a>
                 </li>
-                <li class="logout">
+                <li class="logout"> 
                     <a href="{% url 'deconnexion' %}">
                         <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
                         <span class="titre">Déconnexion</span>
@@ -94,16 +65,16 @@
                             
                          <button type="submit">Rechercher</button>
                     </form>
-                    <div class="card-header">
+                    <!-- <div class="card-header">
                         <h3>Liste des Enseignants</h3>
                         <a href="{% url 'ajouter_professeur' %}" class="btn">Ajouter un Enseignant</a>
-                    </div>
+                    </div> -->
 
                     <table>
                         <thead>
                             <tr>
                                 <td class="lock">Nom</td>
-                                <td class="lock">Prénom</td>
+                                <td class="lock">Prenom</td>
                                 <td class="lock">Matière</td>
         
                                 <td class="lock">Modifier</td>

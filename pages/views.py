@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.template import context
 
 from .forms import Utilisateurforms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from new_project.models import Etudiant
+from new_project.models import Etudiant, Professeur
 from new_project.forms import EtudiantForm
 
 # Create your views here.
@@ -68,16 +68,22 @@ def dashboardadmin(request):
     
     return render(request,'pages/dashboardadmin.html', context)
 
+# def dashboardteacher(request):
+#     etudiants = Etudiant.objects.all()
+#     nombre_total_admin = Etudiant.objects.count()
+
+#     context = {
+#         "etudiants": etudiants,
+#         "nombre_total_admin": nombre_total_admin,
+#     }
+
+#     return render(request, "dashboardteacher/dashboardteacher.html", context)
 def dashboardteacher(request):
-    etudiants = Etudiant.objects.all()
-    nombre_total_admin = Etudiant.objects.count()
-
-    context = {
-        "etudiants": etudiants,
-        "nombre_total_admin": nombre_total_admin,
-    }
-
+    professeur = get_object_or_404(Professeur, id_user=request.user)
+    context = {"professeur": professeur}
     return render(request, "dashboardteacher/dashboardteacher.html", context)
+
+
 
 def dashboardstudent(request):
 

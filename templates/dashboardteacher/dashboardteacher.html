@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion Scolaire - Professeur</title>
-    <link rel="stylesheet" href="{% static 'css/dashboardteacher.css' %}?v=2.0">
+    <title>Espace Enseignant - Mon Profil</title>
+    <link rel="stylesheet" href="{% static 'css/dashboardadmin.css' %}?v=2.0">
 </head>
 <body>
     <div class="container">
-     
+
         <aside class="navigation">
             <ul>
                 <li class="brand">
@@ -18,32 +18,12 @@
                         <span class="titre">Polytechnic University of Man</span>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="#">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="titre">Tableau de bord professeur</span>
-                    </a>
-                </li>
-             
-                <li>
+                {% comment %} <li class="active">
                     <a href="{% url 'dashboardteacher' %}">
-                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <span class="titre">Enseignants</span>
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="titre">Tableau de bord Enseignant</span>
                     </a>
-                </li>
-             
-                
-                   <li>
-                    <a href="{% url 'inscrire_etudiant' %}">
-                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                          <span class="titre">Ajouter Etudiant</span>
-                       
-                    </a>
-                </li>
-                
-
-                  
-                  
+                </li> {% endcomment %}
                 <li>
                     <a href="#">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
@@ -56,12 +36,53 @@
                         <span class="titre">Déconnexion</span>
                     </a>
                 </li>
-               
             </ul>
         </aside>
 
-      
-                              
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <h2>Espace Enseignant</h2>
+                    <p class="subtitle">Année Académique 2025-2026</p>
+                </div>
+                <div class="user-profile">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <span>{{ professeur.prenom }} {{ professeur.nom }}</span>
+                </div>
+            </header>
+
+            <section class="details">
+                <div class="recent-orders">
+                    <div class="card-header">
+                        <h3>Mes informations</h3>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <td class="lock">Nom</td>
+                                <td class="lock">Prénom</td>
+                                <td class="lock">Matière</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if professeur %}
+                            <tr>
+                                <td>{{ professeur.nom }}</td>
+                                <td>{{ professeur.prenom }}</td>
+                                <td>{{ professeur.matiere.nom }}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="3">Aucune information trouvée pour cet enseignant.</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <!-- Ionicons CDN -->
     <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>

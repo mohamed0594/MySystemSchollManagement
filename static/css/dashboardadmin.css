@@ -65,7 +65,7 @@ body {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #94a3b8;
+    color: black;
     height: 48px;
     padding-left: 20px;
     transition: all 0.2s ease;
@@ -227,7 +227,7 @@ table {
 
 table thead td {
     font-weight: 600;
-    color: var(--text-muted);
+    color: black;
     padding-bottom: 12px;
     font-size: 0.85rem;
     border-bottom: 2px solid var(--border-color);
