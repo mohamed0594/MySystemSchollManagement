@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 
-from new_project.models import Etudiant, Professeur
-from .forms import EtudiantForm, ProfesseurForm
+from new_project.models import Etudiant, Matieres, Notes, Professeur
+from .forms import EtudiantForm, ProfesseurForm, NotesForm
 
 
 def inscrire_etudiant(request):
@@ -86,18 +86,7 @@ def supprimer_professeur(request, id):
     messages.success(request, "Professeur supprimé avec succès.")
     return redirect("liste_professeur")
 
-# def liste_professeur(request):
-#     recherche = request.GET.get('recherche')
 
-#     if recherche:
-#         professeurs = Professeur.objects.filter(nom__icontains=recherche)
-#     else:
-#         professeurs = Professeur.objects.all()
-
-  
-#     context = {'professeurs': professeurs, 'recherche': recherche}
-
-#     return render(request, 'liste_professeur.html', context)
 def liste_professeur(request):
 
     recherche = request.GET.get('recherche')
@@ -119,10 +108,28 @@ def liste_professeur(request):
         'liste_professeur.html',
         context
     )
+# gestion des notes
+def gestion_notes(request):
+    notes = Notes.objects.all()
+    return render(request, 'gestion_notes.html', {'notes': notes})
 
+def ajouter_note(request):
+    if request.method == 'POST':
+        etudiant_id = request.POST.get('etudiant')
+        matiere_id = request.POST.get('matiere')
+        note_value = request.POST.get('note')
 
-def detail_professeur(request, id):
-    professeur = get_object_or_404(Professeur, id=id)
-    return render(request, "detail_professeur.html", {"professeur": professeur})
+        etudiant = get_object_or_404(Etudiant, id=etudiant_id)
+        matiere = get_object_or_404(Matieres, id=matiere_id)
+
+        note = Notes(etudiant=etudiant, matiere=matiere, note=note_value)
+        note.save()
+
+        messages.success(request, 'Note ajoutée avec succès.')
+        return redirect('gestion_notes')
+
+    etudiants = Etudiant.objects.all()
+    matieres = Matieres.objects.all()
+    return render(request, 'ajouter_note.html', {'etudiants': etudiants, 'matieres': matieres})
 
 

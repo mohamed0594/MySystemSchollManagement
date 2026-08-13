@@ -4,81 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion Scolaire - Admin</title>
+    <title>Espace Enseignant et gestion des notes</title>
     <link rel="stylesheet" href="{% static 'css/dashboardadmin.css' %}?v=2.0">
 </head>
 <body>
     <div class="container">
-     
+
         <aside class="navigation">
             <ul>
                 <li class="brand">
                     <a href="#">
                         <span class="icon"><ion-icon name="school-outline"></ion-icon></span>
-                        <span class="titre">system of gestion</span>
+                        <span class="titre">Polytechnic University of Man</span>
                     </a>
                 </li>
-                <li class="active">
-                    <a href="#">
+                   <li class="active">
+                    <a href="{% url 'dashboardadmin' %}">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="titre">Tableau de bord Administateur</span>
                     </a>
                 </li>
-             
                 <li>
-                    <a href="{% url 'liste_professeur' %}">
-                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <span class="titre"> gestion des enseignants</span>
-                    </a>
-                </li>
-                <li>
-                        <a href="{% url 'liste_professeur' %}">
-                            <span class="icon"><ion-icon name="book-outline"></ion-icon></span>
-                            <span class="titre">Listes des matieres</span>
-                        </a>
-                    </li>
-              
-                   <li>
-                    <a href="{% url 'inscrire_etudiant' %}">
-                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                          <span class="titre">Ajouter Etudiant</span>
-                       
-                    </a>
-                    
-                </li>
-                 <li>
-                    <a href="{% url 'ajouter_professeur' %}">
-                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
-                          <span class="titre">Ajouter Professeur</span>
-                       
-                    </a>
-                    
-                </li>
-                 <li>
-                    <a href="{% url 'gestion_notes' %}">
-                        <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
-                        <span class="titre">Gestion des notes</span>
-                    </a>
-                </li>
-                 <li>
                     <a href="#">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="titre">Paramètres</span>
                     </a>
                 </li>
-              
-                            
-                
                 <li class="logout">
                     <a href="{% url 'deconnexion' %}">
                         <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
                         <span class="titre">Déconnexion</span>
                     </a>
                 </li>
-               
             </ul>
         </aside>
-       <main class="main-content">
+
+          <main class="main-content">
             <!-- Topbar -->
             <header class="topbar">
                 <div>
@@ -115,9 +76,8 @@
                          <button type="submit">Rechercher</button>
                     </form>
                     <div class="card-header">
-                        <h3>Dernières inscriptions</h3>
-                        <a href="{% url 'inscrire_etudiant' %}" class="btn">Inscrire un Etudiant</a>
-
+                        <h3>Ajout des notes</h3>
+                        <a href="{% url 'ajouter_note' %}" class="btn">Ajouter une note</a>
                     </div>
                   
                     <table>
@@ -167,8 +127,7 @@
                 </div>
             </section>
         </main>
-      
-       
+        
     </div>
 
     <!-- Ionicons CDN -->

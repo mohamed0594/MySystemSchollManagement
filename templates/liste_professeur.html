@@ -1,117 +1,244 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Gestion Scolaire - Liste des Enseignants</title>
+
     <link rel="stylesheet" href="{% static 'css/dashboardadmin.css' %}?v=2.0">
 </head>
+
 <body>
-    <div class="container">
-        
-        <aside class="navigation">
-            <ul>
-                <li class="brand">
-                    <a href="#">
-                        <span class="icon"><ion-icon name="school-outline"></ion-icon></span>
-                        <span class="titre">Polytechnic University of Man</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'dashboardadmin' %}">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="titre">Tableau de bord Administateur</span>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="{% url 'liste_professeur' %}">
-                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <span class="titre">listes enseignants et matieres</span>
-                    </a>
-                </li>
-                
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="titre">Paramètres</span>
-                    </a>
-                </li>
-                <li class="logout"> 
-                    <a href="{% url 'deconnexion' %}">
-                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
-                        <span class="titre">Déconnexion</span>
-                    </a>
-                </li>
-            </ul>
-        </aside>
 
-        <main class="main-content">
-            <header class="topbar">
-                <div>
-                    <h2>Administration Scolaire Administateur</h2>
-                    <p class="subtitle">Année Académique 2025-2026</p>
+<div class="container">
+
+    <aside class="navigation">
+
+        <ul>
+            <li class="brand">
+
+                <a href="#">
+
+                    <span class="icon">
+                        <ion-icon name="school-outline"></ion-icon>
+                    </span>
+
+                    <span class="titre">
+                        Polytechnic University of Man
+                    </span>
+
+                </a>
+
+            </li>
+            <li>
+                <a href="{% url 'dashboardadmin' %}">
+
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+
+                    <span class="titre">
+                        Tableau de bord Administrateur
+                    </span>
+
+                </a>
+
+            </li>
+            <li class="active">
+
+                <a href="{% url 'liste_professeur' %}">
+
+                    <span class="icon">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </span>
+                    <span class="titre">
+                        Liste des enseignants
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+
+                    <span class="icon"> <ion-icon name="settings-outline"></ion-icon> </span> 
+                    <span class="titre">Paramètres</span>
+                </a>
+            </li>
+            <li class="logout">
+
+                <a href="{% url 'deconnexion' %}">
+
+                    <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                    <span class="titre"> Deconnexion </span>
+                    
+                </a>
+            </li>
+        </ul>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h2>
+                    Administration Scolaire
+                </h2>
+                <p class="subtitle">
+                    Année Académique 2025-2026
+                </p>
+            </div>
+            <div class="user-profile">
+                <ion-icon name="person-circle-outline"></ion-icon>
+                <span>  Directeur / Admin</span>
+            </div>
+
+        </header>
+
+
+        <section class="details">
+
+            <div class="recent-orders">
+
+                <form method="GET" class="search-form">
+
+                    <input
+                        type="text"
+                        name="recherche"
+                        placeholder="Rechercher un enseignant..."
+                        value="{{ request.GET.recherche }}"
+                    >
+
+                    <button type="submit"> Rechercher</button>
+                </form>
+
+                <div class="card-header">
+
+                    <h3>
+                        Liste des Enseignants
+                    </h3>
+
                 </div>
-                <div class="user-profile">
-                    <ion-icon name="person-circle-outline"></ion-icon>
-                    <span>Directeur / Admin</span>
-                </div>
-            </header>
 
-            <section class="details">
-                <div class="recent-orders">
-                   <form method="GET" class="search-form">
-                        <input type="text" name="recherche" placeholder="Rechercher un enseignant..."    value="{{ request.GET.recherche }}">
-                            
-                         <button type="submit">Rechercher</button>
-                    </form>
-                    <!-- <div class="card-header">
-                        <h3>Liste des Enseignants</h3>
-                        <a href="{% url 'ajouter_professeur' %}" class="btn">Ajouter un Enseignant</a>
-                    </div> -->
+                <table>
 
-                    <table>
-                        <thead>
-                            <tr>
-                                <td class="lock">Nom</td>
-                                <td class="lock">Prenom</td>
-                                <td class="lock">Matière</td>
-        
-                                <td class="lock">Modifier</td>
-                                <td class="lock">Supprimer</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for professeur in professeurs %}  
-                            <tr>
-                                <td>{{ professeur.nom }}</td>
-                                <td>{{ professeur.prenom }}</td>
-                                <td>{{ professeur.matiere }}</td>
-                                <td>
-                                    <a href="{% url 'modifier_professeur' professeur.id %}" class="Modifier"> 
-                                        <ion-icon name="create-outline"></ion-icon>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{% url 'supprimer_professeur' professeur.id %}" class="Supprimer" onclick="return confirm('Voulez-vous vraiment supprimer cet enseignant ?');"> 
-                                        <ion-icon name="trash-outline"></ion-icon>
-                                    </a>
-                                </td>
-                            </tr>
-                            {% empty %}
-                            <tr>
-                                <td colspan="7">Aucun enseignant trouvé.</td>
-                            </tr>
-                            {% endfor %} 
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </main>
-    </div>
+                    <thead>
 
-    <!-- Ionicons CDN -->
-    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+                        <tr>
+
+                            <td class="lock">Nom</td>
+                                
+                            <td class="lock">prenom </td>
+                             
+                            <td class="lock"> Matiere</td>
+                            <td class="lock">  Modifier</td>
+                              
+                            <td class="lock"> Supprimer</td>
+                               
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+<!--                         
+                             AFFICHAGE DES PROFESSEURS -->
+                      
+
+                        {% for professeur in professeurs %}
+
+                        <tr>
+
+                            <td>
+                                {{ professeur.nom }}
+                            </td>
+                            <td>
+                                {{ professeur.prenom }}
+                            </td>
+                            <td>
+                                {{ professeur.matiere }}
+                            </td>
+
+                            <td>
+
+                                <a href="{% url 'modifier_professeur' professeur.id %}" class="Modifier"title="Modifier"
+                                >
+
+                                    <ion-icon
+                                        name="create-outline">
+                                    </ion-icon>
+                                </a>
+
+                            </td>
+
+                            <td>
+
+                                <a href="{% url 'supprimer_professeur' professeur.id %}" class="Supprimer" title="Supprimer"
+                                    onclick="return confirm('Voulez-vous vraiment supprimer cet enseignant ?');"
+                                >
+                                  <ion-icon
+                                        name="trash-outline">
+                                    </ion-icon>
+
+                                </a>
+
+                            </td>
+                        </tr>
+
+
+
+                        {% empty %}
+
+                        <tr>
+
+                            <td colspan="5">
+
+                                Aucun enseignant trouvé.
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+
+                    </tbody>
+
+                </table>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+
+
+     <!-- IONICONS -->
+
+
+<script
+    type="module"
+    src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js">
+</script>
+
+<script
+    nomodule
+    src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js">
+</script>
+
+
 </body>
+
 </html>

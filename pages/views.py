@@ -68,20 +68,37 @@ def dashboardadmin(request):
     
     return render(request,'pages/dashboardadmin.html', context)
 
-# def dashboardteacher(request):
-#     etudiants = Etudiant.objects.all()
-#     nombre_total_admin = Etudiant.objects.count()
-
-#     context = {
-#         "etudiants": etudiants,
-#         "nombre_total_admin": nombre_total_admin,
-#     }
-
-#     return render(request, "dashboardteacher/dashboardteacher.html", context)
 def dashboardteacher(request):
     professeur = get_object_or_404(Professeur, id_user=request.user)
-    context = {"professeur": professeur}
+
+    context = {"professeur": professeur
+               }
     return render(request, "dashboardteacher/dashboardteacher.html", context)
+
+# def assigner_notes(request, id):
+
+#     professeur = get_object_or_404(Professeur, id_user=request.user)
+
+#     etudiant = get_object_or_404(Etudiant, id=id)
+
+#     if request.method == "POST":
+
+#         note_ = request.POST.get("note")
+
+#         if note_:
+#             note = float(note)
+#             etudiant.notes.create(note=note, matiere=professeur.matiere)
+
+#             messages.success(request, "Note assignée avec succes.")
+#             return redirect("dashboardteacher")
+#         else:
+#             messages.error(request, "Veuillez entrer une note valide.")
+
+#     context = {
+#         "professeur": professeur,
+#         "etudiant": etudiant,
+#     }
+#     return render(request, "assigner_notes.html", context)
 
 
 

@@ -11,6 +11,9 @@ urlpatterns = [
      path("ajouter_professeur/", ajouter_professeur, name='ajouter_professeur'),
      path("modifier_professeur/<int:id>/", modifier_professeur, name='modifier_professeur'),
      path("supprimer_professeur/<int:id>/", supprimer_professeur, name='supprimer_professeur'),
+     path('gestion_notes/', gestion_notes, name='gestion_notes'),
+     path('ajouter_note/', ajouter_note, name='ajouter_note'),
+
      
      
      

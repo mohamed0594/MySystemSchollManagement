@@ -59,3 +59,17 @@ class Professeur (models.Model):
 
     def __str__(self):
         return f"{self.nom} - {self.matiere} - {self.classe}"
+class Notes (models.Model):
+
+    note=models.FloatField(default=0)
+    
+    etudiant = models.ForeignKey(Etudiant, on_delete=models.CASCADE, related_name='notes')
+    matiere = models.ForeignKey(Matieres, on_delete=models.CASCADE, related_name='notes')
+
+    class Meta:
+        verbose_name = "Note"
+        verbose_name_plural = "Notes"
+
+    def __str__(self):
+        return f"{self.etudiant} - {self.matiere} - {self.note}"
+    
