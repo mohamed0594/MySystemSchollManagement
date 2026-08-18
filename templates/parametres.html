@@ -1,0 +1,211 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Paramètres du compte</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/parametres.css' %}">
+
+</head>
+
+
+<body>
+
+<div class="global">
+
+
+    <div class="parametres">
+
+
+        <div class="settings-header">
+
+            <h1>
+                Paramètres
+            </h1>
+
+            <p>
+                Gérez les informations de votre compte
+            </p>
+
+        </div>
+
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="message">
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+
+
+      
+
+        <div class="settings-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Informations personnelles
+                    </h2>
+
+                    <p>
+                        Modifiez les informations associées à votre compte.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <div class="form-group">
+
+                    <label for="{{ form.first_name.id_for_label }}">
+                        Prénom
+                    </label>
+
+                    {{ form.first_name }}
+
+                    {% if form.first_name.errors %}
+
+                        <div class="error">
+                            {{ form.first_name.errors }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="{{ form.last_name.id_for_label }}">
+                        Nom
+                    </label>
+
+                    {{ form.last_name }}
+
+                    {% if form.last_name.errors %}
+
+                        <div class="error">
+                            {{ form.last_name.errors }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="{{ form.email.id_for_label }}">
+                        Adresse email
+                    </label>
+
+                    {{ form.email }}
+
+                    {% if form.email.errors %}
+
+                        <div class="error">
+                            {{ form.email.errors }}
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <button type="submit"
+                        class="btn-primary">
+
+                    Enregistrer les modifications
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+
+        <!-- INFORMATIONS DU COMPTE -->
+
+        <div class="settings-card">
+
+            <div class="card-header">
+
+                <h2>
+                    Informations du compte
+                </h2>
+
+            </div>
+
+
+            <div class="account-info">
+
+                <div>
+
+                    <span class="label">
+                        Nom d'utilisateur
+                    </span>
+
+                    <strong>
+                        {{ utilisateur.username }}
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span class="label">
+                        Rôle
+                    </span>
+
+                    <strong>
+                        {{ utilisateur.get_role_display }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Modifier une note</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/formulaireadmin.css' %}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="form-card">
+
+        <h2>Modifier une note</h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <!-- Étudiant -->
+            <div class="form-group">
+
+                <label for="{{ form.etudiant.id_for_label }}">
+                    Étudiant
+                </label>
+
+                {{ form.etudiant }}
+
+                {% if form.etudiant.errors %}
+                    <span style="color:red;">
+                        {{ form.etudiant.errors.0 }}
+                    </span>
+                {% endif %}
+
+            </div>
+
+
+            <!-- Matière -->
+            <div class="form-group">
+
+                <label for="{{ form.matiere.id_for_label }}">
+                    Matière
+                </label>
+
+                {{ form.matiere }}
+
+                {% if form.matiere.errors %}
+                    <span style="color:red;">
+                        {{ form.matiere.errors.0 }}
+                    </span>
+                {% endif %}
+
+            </div>
+
+
+            <!-- Note -->
+            <div class="form-group">
+
+                <label for="{{ form.note.id_for_label }}">
+                    Note /20
+                </label>
+
+                {{ form.note }}
+
+                {% if form.note.errors %}
+                    <span style="color:red;">
+                        {{ form.note.errors.0 }}
+                    </span>
+                {% endif %}
+
+            </div>
+
+
+            <!-- Boutons -->
+            <div class="buttons">
+
+                <button
+                    type="submit"
+                    class="btn-save"
+                >
+                    Modifier la note
+                </button>
+
+
+                <a
+                    href="{% url 'gestion_notes' %}"
+                    class="Retour"
+                >
+                    Retour
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

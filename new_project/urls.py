@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import *
-
+from pages.views import parametres
 urlpatterns = [
 
     
@@ -13,6 +13,11 @@ urlpatterns = [
      path("supprimer_professeur/<int:id>/", supprimer_professeur, name='supprimer_professeur'),
      path('gestion_notes/', gestion_notes, name='gestion_notes'),
      path('ajouter_note/', ajouter_note, name='ajouter_note'),
+     path('modifier_note/<int:note_id>/', modifier_note, name='modifier_note'),
+     path('rechercher_notes/', rechercher_notes, name='rechercher_notes'),
+     path('ajouter_matiere/', ajouter_matiere, name='ajouter_matiere'),
+     path('parametres/',parametres, name='parametres' ),
+    
 
      
      

@@ -1,137 +1,313 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espace Enseignant et gestion des notes</title>
+    <title>Gestion des notes</title>
     <link rel="stylesheet" href="{% static 'css/dashboardadmin.css' %}?v=2.0">
+
 </head>
+
 <body>
-    <div class="container">
 
-        <aside class="navigation">
-            <ul>
-                <li class="brand">
-                    <a href="#">
-                        <span class="icon"><ion-icon name="school-outline"></ion-icon></span>
-                        <span class="titre">Polytechnic University of Man</span>
-                    </a>
-                </li>
-                   <li class="active">
-                    <a href="{% url 'dashboardadmin' %}">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="titre">Tableau de bord Administateur</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="titre">Paramètres</span>
-                    </a>
-                </li>
-                <li class="logout">
-                    <a href="{% url 'deconnexion' %}">
-                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
-                        <span class="titre">Déconnexion</span>
-                    </a>
-                </li>
-            </ul>
-        </aside>
+<div class="container">
 
-          <main class="main-content">
-            <!-- Topbar -->
-            <header class="topbar">
+    <aside class="navigation">
+
+        <ul>
+
+            <li class="brand">
+
+                <a href="#">
+                <span class="icon"><ion-icon name="school-outline"></ion-icon> </span>
+                   
+                 <span class="titre">Polytechnic University of Man </span>       
+                </a>
+            </li>
+
+            <li>
+
+                <a href="{% url 'dashboardadmin' %}">
+
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+
+                    <span class="titre">
+                        Tableau de bord Administrateur
+                    </span>
+
+                </a>
+
+            </li>
+            
+            <li class="active">
+
+                <a href="{% url 'gestion_notes' %}">
+
+                    <span class="icon">
+                        <ion-icon name="document-text-outline"></ion-icon>
+                    </span>
+
+                    <span class="titre">
+                        Gestion des notes
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li>
+
+                <a href="#">
+
+                    <span class="icon">
+                        <ion-icon name="settings-outline"></ion-icon>
+                    </span>
+
+                    <span class="titre">
+                        Parametres
+                    </span>
+
+                </a>
+
+            </li>
+
+            <li class="logout">
+
+                <a href="{% url 'deconnexion' %}">
+
+                    <span class="icon">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </span>
+
+                    <span class="titre">
+                        Deconnexion
+                    </span>
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <main class="main-content">
+
+
+  
+
+        <header class="topbar">
+
+            <div>
+
+                <h2>
+                    Gestion des notes
+                </h2>
+
+                <p class="subtitle">
+                    Année Academique 2025-2026
+                </p>
+
+            </div>
+
+
+            <div class="user-profile">
+
+                <ion-icon name="person-circle-outline"></ion-icon>
+
+                <span>
+                    Admin
+                </span>
+
+            </div>
+
+        </header>
+
+        <div class="cards">
+
+            <div class="card">
+
                 <div>
-                    <h2>Administration Scolaire Administateur</h2>
-                    <p class="subtitle">Année Académique 2025-2026</p>
-                </div>
-                <div class="user-profile">
-                    <ion-icon name="person-circle-outline"></ion-icon>
-                    <span>Directeur / Admin</span>
-                </div>
-                
-            </header>
-                <div class="cards">
 
-                    <div class="card">
-                        <div>
-                            <h3>{{ nombre_total_admin }}</h3>
-                            <p>Total etudiants</p>
-                        </div>
+                    <h3>
+                        {{ nombre_total_etudiants }}
+                    </h3>
 
-                        <ion-icon name="people-outline"></ion-icon>
+                    <p>
+                        Total etudiants
+                    </p>
+
+                </div>
+
+                <ion-icon name="people-outline"></ion-icon>
+
+            </div>
+
+        </div>
+
+        <section class="details">
+
+            <div class="recent-orders">
+
+
+               
+
+                <form method="GET"
+                      class="search-form">
+
+                    <input type="text"name="recherche"placeholder="Rechercher un Etudiant..."
+                        value="{{ request.GET.recherche }}"
+                    >
+
+                    <button type="submit">
+
+                        <ion-icon name="search-outline"></ion-icon>
+
+                        Rechercher
+
+                    </button>
+
+                </form>
+
+
+
+               
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Listes des etudiants
+                        </h3>
+
+                        <p>
+                            Gestion des notes des Etudiants
+                        </p>
+
                     </div>
 
+
+                    <a href="{% url 'ajouter_note' %}"
+                       class="btn">
+
+                        <ion-icon name="add-outline"></ion-icon>
+
+                        Ajouter une note
+
+                    </a>
+
                 </div>
 
-          
 
-           
-            <section class="details">
-                <div class="recent-orders">
-                    <form method="GET" class="search-form">
-                        <input type="text" name="recherche" placeholder="Rechercher un étudiant..."    value="{{ request.GET.recherche }}">
-                            
-                         <button type="submit">Rechercher</button>
-                    </form>
-                    <div class="card-header">
-                        <h3>Ajout des notes</h3>
-                        <a href="{% url 'ajouter_note' %}" class="btn">Ajouter une note</a>
-                    </div>
-                  
-                    <table>
-                        <thead>
-                            <tr>
-                                <td class="lock">Nom</td>
-                                <td class="lock">Prenom </td>
-                                <td class="lock">Age</td>
-                                <td class="lock">Classe</td>
-                                <td class="lock">Matricule </td>
-                                <td class="lock">Id_user </td>
-                                <td class="lock">Modifier </td>
-                                <td class="lock">Supprimer </td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                          {% for etudiant in etudiants %}  
-                            <tr>
-                            <td>{{ etudiant.nom }}</td>
-                            <td>{{ etudiant.prenom }}</td>
-                            <td>{{ etudiant.age }}</td>
-                            <td>{{ etudiant.classe }}</td>
-                            <td>{{ etudiant.matricule }}</td>
-                            <td>{{ etudiant.id_user }}</td>
+                <table>
 
-                            <td>
-                                <a href="{% url 'modifier_etudiant' etudiant.id %}" class="Modifier"> 
-                                    <ion-icon name="create-outline"></ion-icon>
-                                </a>
-                            </td>
+                    <thead>
 
-                            <td>
-                                 <a href="{% url 'supprimer_etudiant' etudiant.id %}" class="Supprimer"> 
-                                    <ion-icon name="trash-outline"></ion-icon>
-                                </a>
-                            </td>
-                              {% empty %}
-                            </tr>
-                            <tr>
-                                <td colspan="8">Aucun étudiant trouvé.</td>
+                        <tr>
 
-                             {% endfor %} 
-                        </tbody>
-                         
-                         
-                    </table>
-                </div>
-            </section>
-        </main>
-        
-    </div>
+                            <td class="lock">Nom </td>    
+                            <td class="lock">prenom </td>
+                            <td class="lock">Classe</td>
+                            <td class="lock">Matricule</td>
+                            <td class="lock">Matiere</td>        
+                            <td class="lock">Note</td>
+                             <td class="lock">Modifier</td>
+                           
 
-    <!-- Ionicons CDN -->
-    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+                        </tr>
+
+                    </thead>
+
+
+                   <tbody>
+
+{% for note in notes %}
+
+            <tr>
+
+                <td>
+                    {{ note.etudiant.nom }}
+                </td>
+
+                <td>
+                    {{ note.etudiant.prenom }}
+                </td>
+
+                <td>
+                    {{ note.etudiant.classe }}
+                </td>
+
+                <td>
+                    {{ note.etudiant.matricule }}
+                </td>
+
+                <td>
+                    {{ note.matiere }}
+                </td>
+
+                <td>
+                    <strong>
+                        {{ note.note }}
+                    </strong>
+                </td>
+
+                <td>
+
+                        <a href="{% url 'modifier_note' note.id %}" class="Modifier">
+                        <ion-icon name="create-outline"></ion-icon>
+                        Modifier
+                        </a>
+
+                </td>
+
+            </tr>
+
+{% empty %}
+
+    <tr>
+
+        <td colspan="7">
+            Aucune note enregistrée.
+        </td>
+
+    </tr>
+
+{% endfor %}
+
+</tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- ================= IONICONS ================= -->
+
+<script
+    type="module"
+    src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js">
+</script>
+
+<script
+    nomodule
+    src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js">
+</script>
+
+
 </body>
+
 </html>
