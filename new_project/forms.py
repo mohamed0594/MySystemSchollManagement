@@ -1,7 +1,6 @@
-# from dataclasses import fields
-# from .models import Professeur
 from django import forms
-from .models import Etudiant, Professeur,Notes
+from .models import Absence, Etudiant, Professeur, Notes
+
 
 class EtudiantForm(forms.ModelForm):
     class Meta:
@@ -37,3 +36,9 @@ class NotesForm(forms.ModelForm):
             'matiere',
             'note',
         ]
+
+
+class AbsenceForm(forms.ModelForm):
+    class Meta:
+        model = Absence
+        fields = ['etudiant', 'date']

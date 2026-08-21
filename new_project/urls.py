@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import *
-from pages.views import parametres
+from pages.views import absences, parametres, parametresteacher
 urlpatterns = [
 
     
@@ -17,7 +17,8 @@ urlpatterns = [
      path('rechercher_notes/', rechercher_notes, name='rechercher_notes'),
      path('ajouter_matiere/', ajouter_matiere, name='ajouter_matiere'),
      path('parametres/',parametres, name='parametres' ),
-    
+     path('parametresteacher/',parametresteacher, name='parametresteacher' ),
+     path('absences/', absences, name='absences'),
 
      
      

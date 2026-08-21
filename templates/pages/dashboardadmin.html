@@ -31,6 +31,7 @@
                         <span class="titre"> gestion des enseignants</span>
                     </a>
                 </li>
+
                 <li>
                         <a href="{% url 'liste_professeur' %}">
                             <span class="icon"><ion-icon name="book-outline"></ion-icon></span>
@@ -46,6 +47,7 @@
                     </a>
                     
                 </li>
+
                  <li>
                     <a href="{% url 'ajouter_professeur' %}">
                         <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
@@ -54,21 +56,38 @@
                     </a>
                     
                 </li>
+
                  <li>
+
                     <a href="{% url 'gestion_notes' %}">
                         <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
                         <span class="titre">Gestion des notes</span>
                     </a>
+
                 </li>
+
+                 <li>
+                    <a href="{% url 'absences' %}">
+                        <span class="icon">
+                            <ion-icon name="calendar-outline"></ion-icon>
+                        </span>
+                        <span class="titre">Gestion des absences</span>
+                    </a>
+                </li>
+                 {% comment %} <li>
+                <a href="#">
+                    <span class="icon">
+                    <ion-icon name="people-outline"></ion-icon>
+                    </span>
+                    <span class="titre">Gestion des étudiants</span>
+                </a>
+              </li> {% endcomment %}
                  <li>
                     <a href="{% url 'parametres' %}">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="titre">Paramètres</span>
                     </a>
                 </li>
-                
-              
-                            
                 
                 <li class="logout">
                     <a href="{% url 'deconnexion' %}">

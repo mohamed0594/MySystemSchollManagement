@@ -10,10 +10,10 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Paramètres du compte</title>
+    <title>Paramtres du compte</title>
 
     <link rel="stylesheet"
-          href="{% static 'css/parametres.css' %}">
+          href="{% static 'css/parametres.css' %}?v=2.0">
 
 </head>
 
@@ -29,11 +29,12 @@
         <div class="settings-header">
 
             <h1>
-                Paramètres
+                <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                <span>Parametres</span>
             </h1>
 
             <p>
-                Gérez les informations de votre compte
+                Gerez les informations de votre compte
             </p>
 
         </div>
@@ -147,6 +148,17 @@
                     Enregistrer les modifications
 
                 </button>
+                    <a
+                    href="{% url 'dashboardadmin' %}"
+                    class="Retour"
+                >
+                    <ion-icon
+                        name="arrow-back-outline"
+                        class="rr">
+                    </ion-icon>
+
+                    Retour
+                </a>
 
             </form>
 
@@ -154,7 +166,7 @@
 
 
 
-        <!-- INFORMATIONS DU COMPTE -->
+        <!-- INFORMATIONS DU COMPTE concernant le compte -->
 
         <div class="settings-card">
 
@@ -191,6 +203,8 @@
                     <strong>
                         {{ utilisateur.get_role_display }}
                     </strong>
+              
+
 
                 </div>
 
@@ -202,9 +216,13 @@
 
         
     </div>
+    
 
 </div>
 
+    <!-- Ionicons CDN -->
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
 
 </body>
 

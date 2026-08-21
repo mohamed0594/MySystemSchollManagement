@@ -1,17 +1,16 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.template import context
-
 from pages.models import Utilisateur
-
 from .forms import ModifierMotDePasseForm, Utilisateurforms
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
-from new_project.models import Etudiant, Professeur
-from new_project.forms import EtudiantForm
+from new_project.forms import EtudiantForm, AbsenceForm
 from django.contrib.auth.decorators import login_required
 from .forms import UtilisateurInfoForm
 from .forms import Utilisateurforms, UtilisateurInfoForm
+from new_project.models import Etudiant, Professeur, Absence
+
+
 
 
 
@@ -84,11 +83,25 @@ def dashboardteacher(request):
     return render(request, "dashboardteacher/dashboardteacher.html", context)
 
 
-
+@login_required
 def dashboardstudent(request):
 
-    return render(request, 'dashboardstudent/dashboardstudent.html')
+    print(" etudiant connecté :", request.user)
+    print("ID UTILISATEUR :", request.user.id)
 
+    etudiant = Etudiant.objects.filter(
+        id_user=request.user
+    ).first()
+
+    print("ETUDIANT TROUVÉ :", etudiant)
+
+    return render(
+        request,
+        'dashboardstudent/dashboardstudent.html',
+        {
+            'etudiant': etudiant
+        }
+    )
 # vue du parametres
 
 @login_required
@@ -117,56 +130,86 @@ def parametres(request):
 
     return render(request, "parametres.html",context )
 
-# @login_required
-# def modifier_mot_de_passe(request):
+@login_required
 
-#     if request.method == "POST":
+def modifier_mot_de_passe(request):
 
-#         ancien_mot_de_passe = request.POST.get("ancien_mot_de_passe")
-#         nouveau_mot_de_passe = request.POST.get("nouveau_mot_de_passe")
-#         confirmation = request.POST.get("confirmation_mot_de_passe")
+    if request.method == "POST":
 
-#         if not request.user.check_password(ancien_mot_de_passe):
-#             messages.error(
-#                 request,
-#                 "Votre ancien mot de passe est incorrect."
-#             )
+        form = ModifierMotDePasseForm(user=request.user, data=request.POST)
 
-#             return redirect("modifier_mot_de_passe")
+        if form.is_valid():
 
-#         if nouveau_mot_de_passe != confirmation:
-#             messages.error(
-#                 request,
-#                 "Les deux nouveaux mots de passe ne correspondent pas."
-#             )
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, "Votre mot de passe a été modifié avec succès.")
+            return redirect("parametres")
 
-#             return redirect("modifier_mot_de_passe")
+        else:
 
-#         if len(nouveau_mot_de_passe) < 8:
-#             messages.error(
-#                 request,
-#                 "Le nouveau mot de passe doit contenir au moins 8 caractères."
-#             )
+            messages.error(request, "Veuillez corriger les erreurs ci-dessous.")
 
-#             return redirect("modifier_mot_de_passe")
+    else:
 
-#         request.user.set_password(nouveau_mot_de_passe)
+        form = ModifierMotDePasseForm(user=request.user)
 
-#         request.user.save()
+    return render(request, "modifier_mot_de_passe.html", {"form": form})
 
-#         update_session_auth_hash(
-#             request,
-#             request.user
-#         )
+@login_required
+def parametresteacher(request):
 
-#         messages.success(
-#             request,
-#             "Votre mot de passe a été modifié avec succès."
-#         )
+    professeur = get_object_or_404(Professeur, id_user=request.user)
 
-#         return redirect("parametres")
+    if request.method == "POST":
 
-#     return render(
-#         request,
-#         "modifier_mot_de_passe.html"
-#     )
+        form = UtilisateurInfoForm(request.POST, instance=professeur.id_user)
+
+        if form.is_valid():
+
+            form.save()
+            messages.success(request, "Vos informations ont été modifiées avec succès.")
+            return redirect("parametresteacher")
+
+        else:
+
+            messages.error(request, "Veuillez corriger les erreurs ci-dessous.")
+
+    else:
+
+        form = UtilisateurInfoForm(instance=professeur.id_user)
+
+    context = {
+        "form": form,
+        "professeur": professeur
+    }
+
+    return render(request, "parametresteacher.html", context)
+
+@login_required
+def absences(request):
+
+    professeur = get_object_or_404(Professeur, id_user=request.user)
+
+    if request.method == "POST":
+        form = AbsenceForm(request.POST)
+        if form.is_valid():
+            absence = form.save(commit=False)
+            absence.professeur = professeur
+            absence.matiere = professeur.matiere
+            absence.save()
+            messages.success(request, "Absence enregistrée avec succès.")
+            return redirect("absences")
+    else:
+        form = AbsenceForm()
+
+    liste_absences = Absence.objects.filter(professeur=professeur).order_by('-date')
+
+    context = {
+        "professeur": professeur,
+        "form": form,
+        "absences": liste_absences,
+    }
+
+    return render(request, "absences.html", context)
+
+

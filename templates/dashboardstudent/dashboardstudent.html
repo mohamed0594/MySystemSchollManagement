@@ -1,12 +1,97 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Espace Étudiant - Mon Profil</title>
+    <link rel="stylesheet" href="{% static 'css/dashboardadmin.css' %}?v=2.0">
 </head>
 <body>
-   .containe
+    <div class="container">
 
+        <aside class="navigation">
+            <ul>
+                <li class="brand">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="school-outline"></ion-icon></span>
+                        <span class="titre">Polytechnic University of Man</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="titre">Tableau de bord Étudiant</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'parametresteacher' %}">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="titre">Parametres</span>
+                    </a>
+                </li>
+                <li class="logout">
+                    <a href="{% url 'deconnexion' %}">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="titre">Deconnexion</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <h2>Espace Etudiant</h2>
+                    <p class="subtitle">Année Académique 2025-2026</p>
+                </div>
+                <div class="user-profile">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                    <span>{{ etudiant.prenom }} {{ etudiant.nom }}</span>
+                </div>
+            </header>
+
+            <section class="details">
+                <div class="recent-orders">
+                    <div class="card-header">
+                        <h3>Mes informations</h3>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <td class="lock">Nom</td>
+                                <td class="lock">Prenom</td>
+                                <td class="lock">Matiere</td>
+                                <td class="lock">Classe</td>
+                                <td class="lock">Matricule</td>
+                                <td class="lock">id_user</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if etudiant %}
+                            <tr>
+                                <td>{{ etudiant.nom }}</td>
+                                <td>{{ etudiant.prenom }}</td>
+                                <td>{{ etudiant.matiere.nom }}</td>
+                                <td>{{ etudiant.classe}}</td>
+                                <td>{{ etudiant.matricule}}</td>
+                                <td>{{ etudiant.id_user}}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="6">Aucune information trouvée pour cet etudiant.</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Ionicons CDN -->
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

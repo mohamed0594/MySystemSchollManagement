@@ -1,8 +1,12 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-
 from new_project.models import Etudiant, Matieres, Notes, Professeur
-from .forms import EtudiantForm, ProfesseurForm, NotesForm 
+from .forms import AbsenceForm, EtudiantForm, ProfesseurForm, NotesForm 
+
+from django.contrib.auth.decorators import login_required
+from .forms import AbsenceForm, Professeur
+
+
 
 
 
@@ -192,3 +196,6 @@ def ajouter_matiere(request):
             messages.error(request, 'Veuillez entrer un nom de matière valide.')
 
     return render(request, 'liste_professeur.html')
+
+
+#GESTION DES NOTES 

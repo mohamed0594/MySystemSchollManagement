@@ -10,7 +10,7 @@ class Matieres (models.Model):
 
     class Meta:
         verbose_name = "Matière"
-        verbose_name_plural = "Matières"
+        verbose_name_plural = "Matieres"
 
     def __str__(self):
         return self.nom
@@ -33,7 +33,8 @@ class Etudiant (models.Model):
     age=models.IntegerField(default=0)
     classe = models.ForeignKey(Classes, on_delete=models.SET_NULL,null=True)
     matricule =models.CharField(max_length=50, unique=True)
-    id_user = models.ForeignKey(Utilisateur,on_delete=models.CASCADE,related_name="etudiants",null=True,blank=True)
+    id_user = models.ForeignKey(Utilisateur,on_delete=models.CASCADE, related_name="etudiants", null=True, blank=True
+)
     
     class Meta:
         verbose_name = "Etudiant"
@@ -41,8 +42,6 @@ class Etudiant (models.Model):
 
     def __str__(self):
         return f"{self.nom} - {self.prenom} - {self.classe} - {self.matricule}"
-
-
 
 
 class Professeur (models.Model):
@@ -62,8 +61,9 @@ class Professeur (models.Model):
 class Notes (models.Model):
 
     note=models.FloatField(default=0)
-    
+
     etudiant = models.ForeignKey(Etudiant, on_delete=models.CASCADE, related_name='notes')
+
     matiere = models.ForeignKey(Matieres, on_delete=models.CASCADE, related_name='notes')
 
     class Meta:
@@ -72,4 +72,22 @@ class Notes (models.Model):
 
     def __str__(self):
         return f"{self.etudiant} - {self.matiere} - {self.note}"
+
+class Absence(models.Model):
+
+    etudiant = models.ForeignKey(Etudiant, on_delete=models.CASCADE, related_name='absences')
+
+    matiere = models.ForeignKey(Matieres, on_delete=models.CASCADE, related_name='absences')
+
+    professeur = models.ForeignKey(Professeur, on_delete=models.SET_NULL, null=True)
+
+    date = models.DateField()
+
+    class Meta:
+        verbose_name = "Absence"
+
+        verbose_name_plural = "Absences"
+
+    def __str__(self):
+        return f"{self.etudiant} - {self.matiere} - {self.date}"
     

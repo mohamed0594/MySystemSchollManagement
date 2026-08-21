@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des absences</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .formulaire {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            margin-bottom: 30px;
+        }
+        .formulaire p {
+            margin: 10px 0;
+        }
+        .bouton {
+            background-color: #2c7be5;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .message-succes {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 600px;
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #2c7be5;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gestion des absences</h1>
+    <p>Professeur : {{ professeur.nom }} {{ professeur.prenom }} — Matière : {{ professeur.matiere }}</p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message-succes">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="formulaire">
+        <h2>Enregistrer une absence</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="bouton">Enregistrer</button>
+        </form>
+    </div>
+
+    <h2>Absences enregistrées</h2>
+    <table>
+        <tr>
+            <th>Étudiant</th>
+            <th>Matière</th>
+            <th>Date</th>
+        </tr>
+        {% for absence in absences %}
+        <tr>
+            <td>{{ absence.etudiant }}</td>
+            <td>{{ absence.matiere }}</td>
+            <td>{{ absence.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
