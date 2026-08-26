@@ -78,22 +78,14 @@ class ModifierMotDePasseForm(PasswordChangeForm):
     )
     # fonction pour verifier la veracité du mot de passe
 
+class UtilisateurRoleForm(forms.ModelForm):
+    class Meta:
+        model = Utilisateur
+        fields = ['username',
+                   'first_name', 
+                  'last_name', 
+                  'email',
+                   'role'
+                ]
 
-    # def effacer(self):
-    #     cleaned_data = super().effacer()
-    #     new_password = cleaned_data.get(
-    #         "Nouveau mot de Passe"
-    #     )
-
-    #     confirmation = cleaned_data.get(
-    #         "Confirmation mot de passe"
-    #     )
-
-    #     if new_password and confirmation:
-
-    #         if confirmation!= new_password:
-
-    #             raise forms.ValidationError(
-    #                 "Les deux nouveaux mots de passe ne correspondent pas."
-    #             )
-    #     return cleaned_data
+    

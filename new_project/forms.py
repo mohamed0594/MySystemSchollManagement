@@ -42,3 +42,9 @@ class AbsenceForm(forms.ModelForm):
     class Meta:
         model = Absence
         fields = ['etudiant', 'date']
+
+# FORMULAIRE POUR MODIFIER LE ROLE D'UN UTILISATEUR
+# class UtilisateurRoleForm(forms.ModelForm):
+#     class Meta:
+#         model = Utilisateur
+#         fields = ['role']

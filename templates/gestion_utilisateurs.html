@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestion Scolaire - Utilisateurs</title>
+<link rel="stylesheet" href="{% static 'css/dashboardadmin.css' %}?v=2.0">
+
+<link rel="stylesheet" href="{% static 'css/gestion_utilisateurs.css' %}?v=1.0">
+</head>
+<body>
+<div class="container">
+
+    <aside class="navigation">
+                <ul>
+                <li class="brand">
+                <a href="#">
+                <span class="icon"><ion-icon name="school-outline"></ion-icon></span>
+                <span class="titre">Polytechnic University of Man</span>
+                </a>
+                </li>
+                <li>
+                <a href="{% url 'dashboardadmin' %}">
+                <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                <span class="titre">Tableau de bord Administrateur</span>
+                </a>
+                </li>
+                <li class="active">
+                <a href="{% url 'gestion_utilisateurs' %}">
+                <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                <span class="titre">Gestion des utilisateurs</span>
+                </a>
+                </li>
+                <li>
+                <a href="{% url 'parametres' %}">
+                <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                <span class="titre">Parametres</span>
+                </a>
+                </li>
+                <li class="logout">
+                <a href="{% url 'deconnexion' %}">
+                <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                <span class="titre">Deconnexion</span>
+                </a>
+                </li>
+            </ul>
+    </aside>
+
+<main class="main-content">
+<header class="topbar">
+    <div>
+            <h2>Gestion des utilisateurs</h2>
+            <p class="subtitle">Année Académique 2025-2026</p>
+            </div>
+            </header>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="message-succes">{{ message }}</div>
+            {% endfor %}
+                {% endif %}
+
+  <div class="recent-orders">
+    <table>
+        <thead>
+            <tr>
+                <td class="lock">Nom d'utilisateur</td>
+                <td class="lock">Nom complet</td>
+                <td class="lock">Email</td>
+                <td class="lock">Rôle</td>
+                <td class="lock">Modifier</td>
+                <td class="lock">Supprimer</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.first_name }} {{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <a href="{% url 'modifier_role' user.id %}" class="Modifier">
+                        <ion-icon name="create-outline"></ion-icon>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'supprimer_utilisateur' user.id %}" class="Supprimer">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">Aucun utilisateur trouvé.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</main>
+</div>
+
+<script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

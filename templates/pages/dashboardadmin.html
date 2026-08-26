@@ -74,18 +74,19 @@
                         <span class="titre">Gestion des absences</span>
                     </a>
                 </li>
-                 {% comment %} <li>
-                <a href="#">
+
+                <li>
+                <a href="{% url 'gestion_utilisateurs'%}">
                     <span class="icon">
-                    <ion-icon name="people-outline"></ion-icon>
+                        <ion-icon name="people-outline"></ion-icon>
                     </span>
-                    <span class="titre">Gestion des étudiants</span>
+                    <span class="titre">Gestion des utilisateurs</span>
                 </a>
-              </li> {% endcomment %}
+            </li> 
                  <li>
                     <a href="{% url 'parametres' %}">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="titre">Paramètres</span>
+                        <span class="titre">Parametres</span>
                     </a>
                 </li>
                 
@@ -154,33 +155,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                          {% for etudiant in etudiants %}  
-                            <tr>
-                            <td>{{ etudiant.nom }}</td>
-                            <td>{{ etudiant.prenom }}</td>
-                            <td>{{ etudiant.age }}</td>
-                            <td>{{ etudiant.classe }}</td>
-                            <td>{{ etudiant.matricule }}</td>
-                            <td>{{ etudiant.id_user }}</td>
-
-                            <td>
-                                <a href="{% url 'modifier_etudiant' etudiant.id %}" class="Modifier"> 
-                                    <ion-icon name="create-outline"></ion-icon>
-                                </a>
-                            </td>
-
-                            <td>
-                                 <a href="{% url 'supprimer_etudiant' etudiant.id %}" class="Supprimer"> 
-                                    <ion-icon name="trash-outline"></ion-icon>
-                                </a>
-                            </td>
-                              {% empty %}
-                            </tr>
-                            <tr>
-                                <td colspan="8">Aucun étudiant trouvé.</td>
-
-                             {% endfor %} 
-                        </tbody>
+              {% for etudiant in etudiants %}
+            <tr>
+                <td>{{ etudiant.nom }}</td>
+                <td>{{ etudiant.prenom }}</td>
+                <td>{{ etudiant.age }}</td>
+                <td>{{ etudiant.classe }}</td>
+                <td>{{ etudiant.matricule }}</td>
+                <td>{{ etudiant.id_user }}</td>
+                <td>
+                    <a href="{% url 'modifier_etudiant' etudiant.id %}" class="Modifier">
+                        <ion-icon name="create-outline"></ion-icon>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'supprimer_etudiant' etudiant.id %}" class="Supprimer">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">Aucun étudiant trouvé.</td>
+            </tr>
+            {% endfor %}
+                                    </tbody>
                          
                          
                     </table>

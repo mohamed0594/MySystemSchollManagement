@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import *
-from pages.views import absences, parametres, parametresteacher
+from pages.views import absences, parametres, parametresteacher, gestion_utilisateurs, modifier_role, supprimer_utilisateur
 urlpatterns = [
 
     
@@ -19,6 +19,9 @@ urlpatterns = [
      path('parametres/',parametres, name='parametres' ),
      path('parametresteacher/',parametresteacher, name='parametresteacher' ),
      path('absences/', absences, name='absences'),
+     path('gestion_utilisateurs/', gestion_utilisateurs, name='gestion_utilisateurs'),
+     path('modifier_role/<int:id>/', modifier_role, name='modifier_role'),
+     path('supprimer_utilisateur/<int:id>/', supprimer_utilisateur, name='supprimer_utilisateur'),
 
      
      

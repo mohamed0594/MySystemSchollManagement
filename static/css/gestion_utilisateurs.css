@@ -1,0 +1,61 @@
+/* --- MESSAGE DE SUCCÈS --- */
+.message-succes {
+    background-color: #dcfce7;
+    color: #15803d;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* --- CONTENEUR DU TABLEAU (même style que .recent-orders) --- */
+.recent-orders {
+    background: var(--white);
+    padding: 20px 24px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    margin-top: 20px;
+}
+
+/* --- BADGE DE RÔLE --- */
+.role-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.role-badge.admin {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.role-badge.enseignant {
+    background: #fef9c3;
+    color: #a16207;
+}
+
+.role-badge.etudiant {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+/* --- ICÔNES MODIFIER / SUPPRIMER --- */
+.Modifier, .Supprimer {
+    font-size: 1.2rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+}
+
+.Modifier {
+    color: var(--accent-color);
+}
+
+.Supprimer {
+    color: #b91c1c;
+}

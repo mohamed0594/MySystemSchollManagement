@@ -6,8 +6,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from new_project.forms import EtudiantForm, AbsenceForm
 from django.contrib.auth.decorators import login_required
-from .forms import UtilisateurInfoForm
-from .forms import Utilisateurforms, UtilisateurInfoForm
+from .forms import UtilisateurInfoForm,UtilisateurRoleForm
+from .forms import Utilisateurforms
 from new_project.models import Etudiant, Professeur, Absence
 
 
@@ -211,5 +211,46 @@ def absences(request):
     }
 
     return render(request, "absences.html", context)
+
+
+@login_required
+
+def gestion_utilisateurs(request):
+    users = Utilisateur.objects.all()
+    context = {
+        "users":users
+    }
+    return render(request, 'gestion_utilisateurs.html', context)
+@login_required
+def modifier_role(request, id):
+
+    user = get_object_or_404(Utilisateur, id=id)
+
+    if request.method == "POST":
+        form = UtilisateurRoleForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Le rôle a été modifié avec succès.")
+            return redirect('gestion_utilisateurs')
+    else:
+        form = UtilisateurRoleForm(instance=user)
+
+    context = {
+        "form": form,
+        "user": user
+    }
+    return render(request, "formulaireutilisateurs.html", context)
+
+
+@login_required
+
+def supprimer_utilisateur(request, id):
+
+    utilisateur = get_object_or_404(Utilisateur, id = id)
+    utilisateur.delete()
+
+    messages.success(request, 'utilisateur supprimer avec succès')
+    return redirect("gestion_utilisateurs")
+    
 
 

@@ -68,17 +68,29 @@
 
     <div class="formulaire">
         <h2>Enregistrer une absence</h2>
+         
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="bouton">Enregistrer</button>
+             <a
+                    href="{% url 'dashboardteacher' %}"
+                    class="Retour"
+                >
+                    <ion-icon
+                        name="arrow-back-outline"
+                        class="rr">
+                    </ion-icon>
+
+                    Retour
+                </a>
         </form>
     </div>
 
     <h2>Absences enregistrées</h2>
     <table>
         <tr>
-            <th>Étudiant</th>
+            <th>Etudiant</th>
             <th>Matière</th>
             <th>Date</th>
         </tr>

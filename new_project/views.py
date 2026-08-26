@@ -2,7 +2,6 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from new_project.models import Etudiant, Matieres, Notes, Professeur
 from .forms import AbsenceForm, EtudiantForm, ProfesseurForm, NotesForm 
-
 from django.contrib.auth.decorators import login_required
 from .forms import AbsenceForm, Professeur
 
