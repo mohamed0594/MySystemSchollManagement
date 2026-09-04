@@ -15,12 +15,12 @@ from new_project.models import Etudiant, Professeur, Absence
 
 
 # Create your views here.
-
+@login_required
 def accueil(request):
 
     return render(request, 'pages/accueil.html')
 
-
+@login_required
 def connexion(request):
     form = Utilisateurforms()
     if request.method == 'POST':
@@ -56,11 +56,12 @@ def connexion(request):
              
     return render(request,'pages/connexion.html',{'form':form})
 #deconnexion
+@login_required
 def deconnexion(request):
     logout(request)
     return redirect('connexion')
 
-
+@login_required
 def dashboardadmin(request):
     etudiants = Etudiant.objects.all()
     nombre_total_admin = Etudiant.objects.count()
@@ -74,7 +75,7 @@ def dashboardadmin(request):
    
     
     return render(request,'pages/dashboardadmin.html', context)
-
+@login_required
 def dashboardteacher(request):
     professeur = get_object_or_404(Professeur, id_user=request.user)
 

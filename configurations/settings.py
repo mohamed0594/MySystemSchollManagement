@@ -76,12 +76,11 @@ WSGI_APPLICATION = 'configurations.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "libsql.db.backends.sqlite3",
+        "NAME": f"{config('TURSO_DATABASE_URL')}?authToken={config('TURSO_AUTH_TOKEN')}",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

@@ -8,7 +8,7 @@ from .forms import AbsenceForm, Professeur
 
 
 
-
+@login_required
 def inscrire_etudiant(request):
     if request.method == "POST":
         form = EtudiantForm(request.POST)
@@ -23,14 +23,14 @@ def inscrire_etudiant(request):
 
     return render(request, "formulaireadmin.html", {"form": form})
 
-
+@login_required
 def supprimer_etudiant(request, id):
     etudiant = get_object_or_404(Etudiant, id=id)
     etudiant.delete()
     messages.success(request, "Étudiant supprimé avec succès !")
     return redirect("dashboardadmin")
 
-
+@login_required
 def modifier_etudiant(request, id):
     etudiant = get_object_or_404(Etudiant, id=id)
     if request.method == "POST":
@@ -51,7 +51,7 @@ def modifier_etudiant(request, id):
 #     professeurs = Professeur.objects.all()
 #     return render(request, "liste_professeur.html", {"professeurs": professeurs})
 
-
+@login_required
 def ajouter_professeur(request):
     if request.method == "POST":
         form = ProfesseurForm(request.POST)
@@ -66,7 +66,7 @@ def ajouter_professeur(request):
 
     return render(request, "formulaireteacher.html", {"form": form})
 
-
+@login_required
 def modifier_professeur(request, id):
 
     professeur = get_object_or_404(Professeur, id=id)
@@ -83,14 +83,14 @@ def modifier_professeur(request, id):
 
     return render(request, "formulaireteacher.html", {"form": form})
 
-
+@login_required
 def supprimer_professeur(request, id):
     professeur = get_object_or_404(Professeur, id=id)
     professeur.delete()
     messages.success(request, "Professeur supprimé avec succès.")
     return redirect("liste_professeur")
 
-
+@login_required
 def liste_professeur(request):
 
     recherche = request.GET.get('recherche')
@@ -113,12 +113,14 @@ def liste_professeur(request):
         context
     )
 # gestion des notes
+@login_required
 def gestion_notes(request):
 
     etudiants = Etudiant.objects.all()
     notes = Notes.objects.all()
 
     return render(request,'gestion_notes.html',{'etudiants': etudiants,'notes': notes})
+@login_required
 def modifier_note(request, note_id):
     note = get_object_or_404(Notes, id=note_id)
 
@@ -134,12 +136,12 @@ def modifier_note(request, note_id):
         form = NotesForm(instance=note)
 
     return render(request, 'modifier_note.html', {'form': form})
-
+@login_required
 def rechercher_notes(request):
     recherche = request.GET.get('query')
     notes = Notes.objects.filter(etudiant__nom__icontains=recherche) if recherche else Notes.objects.all()
     return render(request, 'gestion_notes.html', {'notes': notes, 'recherche': recherche})
-
+@login_required
 def ajouter_note(request):
 
     if request.method == 'POST':
@@ -183,7 +185,7 @@ def ajouter_note(request):
             'matieres': matieres
         }
     )
-
+@login_required
 def ajouter_matiere(request):
     if request.method == 'POST':
         nom_matiere = request.POST.get('nom_matiere')
